@@ -1,7 +1,8 @@
 movies = {
   StarWars: 4.8, 
-  Godfather: 5
-  }
+  Godfather: 5,
+  Harry Potter: 4,5
+}
 
 puts "What would you like to do? "
 
@@ -29,9 +30,17 @@ when "update"
     movies[title.to_sym] = rating.to_i
   end
 when "display"
-  puts "Movies!"
+  movies.each do |title, rating| 
+    puts "#{title}: #{rating}"
+  end
 when "delete"
-  puts "Deleted!"
+  puts "What movie would you like to delete? "
+  title = gets.chomp
+  if movies[title.to_sym].nil? 
+    puts "That movie does not exist."
+  else
+    movies.delete(title.to_sym)
+  end
 else
   puts "Error!"
 end

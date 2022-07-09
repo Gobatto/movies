@@ -1,27 +1,37 @@
 movies = {
-  'godfather' => '5'
-}
+  StarWars: 4.8, 
+  Godfather: 5
+  }
+
 puts "What would you like to do? "
+
 choice = gets.chomp
 
 case choice
-  when "add"
-    puts "What movie would you like to add? "
-      title = gets.chomp
+when "add"
+  puts "What movie would you like to add? "
+  title = gets.chomp
+  if movies[title.to_sym].nil? 
     puts "What rating does the movie have? "
-      rating = gets.chomp
+    rating = gets.chomp
     movies[title.to_sym] = rating.to_i
-    if movies[title.to_sym] == nil
-      movies = [movies[title.to_sym]]
-    else 
-      puts "Movie already on the list!"
-    end
-  when "update"
-    puts "Updated!"
-  when "display"
-    puts "Movies!"
-  when "delete"
-    puts "Deleted!"
   else
-    puts "Error!"
+    puts "That movie already exists! Its rating is #{movies[title.to_sym]}."
+  end
+when "update"
+  puts "What movie would you like to update? "
+  title = gets.chomp
+  if movies[title.to_sym].nil? 
+    puts "That movie does not exist."
+  else
+    puts "What is the new rating? "
+    rating = gets.chomp
+    movies[title.to_sym] = rating.to_i
+  end
+when "display"
+  puts "Movies!"
+when "delete"
+  puts "Deleted!"
+else
+  puts "Error!"
 end
